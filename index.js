@@ -1,9 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
-import studentRouter from "./routers/studentRouter.js";
+
 
 import dns from "node:dns";
-import Student from "./models/student.js";
+
 import userRouter from "./routers/userRouter.js";
 import jwt from "jsonwebtoken";
 import authenticateUser from "./middlewares/authentication.js";
@@ -27,7 +27,6 @@ mongoose.connect(mongodbURI).then(
 app.use(express.json())
 
 app.use(authenticateUser)
-app.use("/students",studentRouter)
 app.use("/users",userRouter)
 app.use("/products",productRouter)
 
