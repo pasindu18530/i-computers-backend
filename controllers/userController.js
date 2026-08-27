@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 import Product from "../models/product.js";
 
+import dotenv from "dotenv"
+
 export async function createUser(req,res){
   try{
      const passwordHash = bcrypt.hashSync(req.body.password,10)
@@ -51,12 +53,13 @@ export async function loginUser(req,res){
                 image:user.image
               }
 
-              const token = jwt.sign(payload,"622512695",{
+              const token = jwt.sign(payload, process.env.JWT_SECRET,{
 
                 expiresIn :"48h"
               })
               res.json({
-                token:token
+                token:token,
+                isAdmin:user.isAdmin
               })
               
         }else{

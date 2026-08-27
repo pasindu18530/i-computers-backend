@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-
+import cors from "cors";
 
 import dns from "node:dns";
 
@@ -8,12 +8,14 @@ import userRouter from "./routers/userRouter.js";
 import jwt from "jsonwebtoken";
 import authenticateUser from "./middlewares/authentication.js";
 import productRouter from "./routers/productRouter.js";
-
+import dotenv from "dotenv"
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
+
+dotenv.config()
 
 const app = express();
 
-const mongodbURI="mongodb+srv://pasindunawagamuwa4_db_user:Pas18530n@cluster0.eys0fps.mongodb.net/computers?appName=Cluster0"
+const mongodbURI=process.env.MONGO_URI
 
 
 
@@ -23,12 +25,13 @@ mongoose.connect(mongodbURI).then(
     
   }
 )
-
+app.use(cors ())
 app.use(express.json())
 
 app.use(authenticateUser)
-app.use("/users",userRouter)
-app.use("/products",productRouter)
+app.use("/api/users",userRouter)
+app.use("/api/products",productRouter)
+
 
 
 
