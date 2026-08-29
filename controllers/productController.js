@@ -26,7 +26,7 @@ export async function createProduct(req,res){
       name:req.body.name,
       altNames:req.body.altNames,
       price:req.body.price,
-      labelledprice:req.body.labelledprice,
+      labelledPrice:req.body.labelledPrice,
       description:req.body.description,
       images:req.body.images,
       brand:req.body.brand,
@@ -43,6 +43,7 @@ export async function createProduct(req,res){
       product:newProduct
     })
   } catch (error) {
+
     res.status(500).json({
       message:"Error creating product"
     })
@@ -103,7 +104,7 @@ export async function updateProduct(req,res){
       name:req.body.name,
       altNames:req.body.altNames,
       price:req.body.price,
-      labelledprice:req.body.labelledprice,
+      labelledPrice:req.body.labelledPrice,
       description:req.body.description,
       images:req.body.images,
       brand:req.body.brand,
@@ -111,11 +112,13 @@ export async function updateProduct(req,res){
       category:req.body.category,
       stock:req.body.stock,
       isAvailable:req.body.isAvailable
+      
     })
     res.json({
       message:"Product updated successfully"
     })
   } catch (error) {
+    
     res.status(500).json({
       message:"Error updating product"
     })
