@@ -9,6 +9,7 @@ import jwt from "jsonwebtoken";
 import authenticateUser from "./middlewares/authentication.js";
 import productRouter from "./routers/productRouter.js";
 import dotenv from "dotenv"
+import orderRouter from "./routers/orderRouter.js";
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 dotenv.config()
@@ -31,6 +32,7 @@ app.use(express.json())
 app.use(authenticateUser)
 app.use("/api/users",userRouter)
 app.use("/api/products",productRouter)
+app.use("/api/orders",orderRouter)
 
 
 
